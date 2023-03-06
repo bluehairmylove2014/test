@@ -4,7 +4,6 @@ const db = require("../db");
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const PRIVATE_KEY = fs.readFileSync('../private-key.pem');
-console.log(fs.readFileSync('private-key.pem'));
 exports.checkLogin = function (req, res, next) {
     try {
         const email = req.body.email;
