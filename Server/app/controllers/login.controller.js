@@ -2,8 +2,8 @@
 
 const db = require("../db");
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const PRIVATE_KEY = fs.readFileSync('./Server/private-key.pem');
+// const fs = require('fs');
+// const PRIVATE_KEY = fs.readFileSync('./Server/private-key.pem');
 exports.checkLogin = function (req, res, next) {
     try {
         const email = req.body.email;
@@ -19,13 +19,13 @@ exports.checkLogin = function (req, res, next) {
                     }
                     else {
                         // Valid login
-                        const jwtBearerToken = jwt.sign({}, PRIVATE_KEY, {
-                            algorithm: 'RS256',
-                            // Add to set expire time  
-                            expiresIn: 200,
-                            subject: dbres.rows[0].username
-                        })
-                        res.status(200).json({ idToken: jwtBearerToken, expiresIn: 120 });
+                        // const jwtBearerToken = jwt.sign({}, PRIVATE_KEY, {
+                        //     algorithm: 'RS256',
+                        //     // Add to set expire time  
+                        //     expiresIn: 200,
+                        //     subject: dbres.rows[0].username
+                        // })
+                        // res.status(200).json({ idToken: jwtBearerToken, expiresIn: 120 });
                     }
                 }
             }
@@ -48,14 +48,14 @@ exports.loginWithGoogle = function(req, res, next) {
                         res.status(401);
                     }
                     else {
-                        // Valid login
-                        const jwtBearerToken = jwt.sign({}, PRIVATE_KEY, {
-                            algorithm: 'RS256',
-                            // Add to set expire time  
-                            expiresIn: 200,
-                            subject: dbres.rows[0].username
-                        })
-                        res.status(200).json({ idToken: jwtBearerToken, expiresIn: 120 });
+                        // // Valid login
+                        // const jwtBearerToken = jwt.sign({}, PRIVATE_KEY, {
+                        //     algorithm: 'RS256',
+                        //     // Add to set expire time  
+                        //     expiresIn: 200,
+                        //     subject: dbres.rows[0].username
+                        // })
+                        // res.status(200).json({ idToken: jwtBearerToken, expiresIn: 120 });
                     }
                 }
             }
@@ -112,13 +112,13 @@ exports.createUser = function (req, res, next) {
                                             console.log(err.stack);
                                         } else {
                                             // Valid login
-                                            const jwtBearerToken = jwt.sign({}, PRIVATE_KEY, {
-                                                algorithm: 'RS256',
-                                                // Add to set expire time  
-                                                expiresIn: 200,
-                                                subject: email.split('@')[0]
-                                            })
-                                            res.status(200).json({ idToken: jwtBearerToken, expiresIn: 120 });
+                                            // const jwtBearerToken = jwt.sign({}, PRIVATE_KEY, {
+                                            //     algorithm: 'RS256',
+                                            //     // Add to set expire time  
+                                            //     expiresIn: 200,
+                                            //     subject: email.split('@')[0]
+                                            // })
+                                            // res.status(200).json({ idToken: jwtBearerToken, expiresIn: 120 });
                                         }
                                     })
                                 }
